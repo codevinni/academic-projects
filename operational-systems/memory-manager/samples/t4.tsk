@@ -1,0 +1,4 @@
+#T=512
+vetor1 new 100
+vetor1[10]
+vetor1[99]
