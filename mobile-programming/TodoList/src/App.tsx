@@ -45,6 +45,7 @@ function App(){
         const newTask: Task = { description: inputElement.value, completed: false, id: tasksList.length + 1 };
 
         setTasksList([...tasksList, newTask]);
+        setPendingTasksNumber(n => n + 1);
         inputElement.value = "";
     }
 
@@ -77,11 +78,13 @@ function App(){
     }, [tasksList]);
 
     return(
-        <>
-            <Header completedTasks={completedTasksNumber} pendingTasks={pendingTasksNumber} handleNewTaskClick={handleNewTaskClick}/>
-            <TasksContainer tasks={tasksList} handleTaskClick={handleTaskClick} currentFilter={filter}/>
-            <Footer handleFilterChange={handleFilterChange}/>
-        </>
+        <div className="todo-app">
+            <main className="todo-container">
+                <Header completedTasks={completedTasksNumber} pendingTasks={pendingTasksNumber} handleNewTaskClick={handleNewTaskClick}/>
+                <TasksContainer tasks={tasksList} handleTaskClick={handleTaskClick} currentFilter={filter}/>
+                <Footer handleFilterChange={handleFilterChange} currentFilter={filter}/>
+            </main>
+        </div>
     )
 }
 

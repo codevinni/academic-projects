@@ -1,0 +1,629 @@
+/* ==========================================================================
+   NEUMORPHISM DARK DESIGN SYSTEM (SOFT UI)
+   Deep Charcoal Palette (Matching @dark-neumorphism)
+   Accent: Solid Fluorescent Green (#00FF66)
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Ultra Dark Neumorphism */
+  --bg-base: #101214;
+  --bg-surface: #131518;
+  --bg-surface-elevated: #17191d;
+  --bg-surface-pressed: #0c0d0f;
+  
+  /* Accent Colors */
+  --accent-green: #00FF66;
+  --accent-green-hover: #00e65c;
+  --accent-green-glow: rgba(0, 255, 102, 0.14);
+  --accent-green-subtle: rgba(0, 255, 102, 0.08);
+  --accent-green-text: #0b2e16;
+
+  /* Typography Colors */
+  --text-primary: #F0F3F6;
+  --text-secondary: #8892A0;
+  --text-muted: #525B68;
+  --text-completed: #6B7685;
+
+  /* Neumorphic Shadows (Calibrated for deep dark #131518) */
+  --neu-light-source: rgba(255, 255, 255, 0.04);
+  --neu-light-source-bright: rgba(255, 255, 255, 0.07);
+  --neu-dark-shadow: rgba(0, 0, 0, 0.85);
+  --neu-dark-shadow-deep: rgba(0, 0, 0, 0.95);
+
+  /* Outset (Convex / Elevated) */
+  --neu-shadow-sm: 4px 4px 8px var(--neu-dark-shadow), -3px -3px 7px var(--neu-light-source);
+  --neu-shadow-md: 7px 7px 16px var(--neu-dark-shadow), -4px -4px 12px var(--neu-light-source);
+  --neu-shadow-lg: 10px 10px 24px var(--neu-dark-shadow-deep), -6px -6px 18px var(--neu-light-source);
+  
+  /* Inset (Concave / Pressed) */
+  --neu-shadow-inset-sm: inset 3px 3px 6px var(--neu-dark-shadow), inset -2px -2px 5px var(--neu-light-source);
+  --neu-shadow-inset-md: inset 4px 4px 9px var(--neu-dark-shadow-deep), inset -3px -3px 8px var(--neu-light-source);
+  
+  /* Sombra verde sutil para tarefas concluídas */
+  --neu-shadow-completed: 6px 6px 16px var(--neu-dark-shadow), -4px -4px 10px var(--neu-light-source), 0 0 10px var(--accent-green-glow);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-out;
+  --transition-normal: 0.25s ease-out;
+  --transition-spring: 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+  --radius-full: 9999px;
+  --radius-xl: 20px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+}
+
+/* ==========================================================================
+   CSS Reset & Base Surfaces
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Browser Defaults Polish */
+::selection {
+  background: var(--accent-green);
+  color: #101214;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1d2024;
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #272c32;
+}
+
+input, button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* Focus Visible apenas para elementos interativos necessários (sem quadrado no input) */
+button:focus-visible, div[role="checkbox"]:focus-visible {
+  outline: 2px solid var(--accent-green);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Layout Shell (Mobile-First) & Animação Inicial da Página
+   ========================================================================== */
+
+.todo-app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px 120px 16px;
+  background-color: var(--bg-base);
+}
+
+.todo-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Desktop Polish */
+@media (min-width: 640px) {
+  .todo-app {
+    padding: 48px 24px 140px 24px;
+  }
+
+  .todo-container {
+    max-width: 520px;
+    gap: 28px;
+  }
+}
+
+/* Animações Iniciais de Entrada Escalonada */
+@keyframes pageElementEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Header Component
+   ========================================================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pageElementEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.title-accent {
+  color: var(--accent-green);
+  text-shadow: 0 0 12px var(--accent-green), 0 0 24px rgba(0, 255, 102, 0.45);
+}
+
+.header-subtitle {
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-top: -8px;
+  animation: pageElementEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+/* Task Input Group */
+.task-input-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+  animation: pageElementEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+
+.input-inner-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 16px;
+  background-color: var(--bg-surface-pressed);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-shadow-inset-md);
+  transition: box-shadow var(--transition-normal);
+}
+
+.input-inner-wrapper:focus-within {
+  box-shadow: var(--neu-shadow-inset-deep);
+}
+
+.input-search-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color var(--transition-normal);
+}
+
+.input-inner-wrapper:focus-within .input-search-icon {
+  color: var(--accent-green);
+}
+
+/* Sem outline verde no input */
+#task-input {
+  width: 100%;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  caret-color: var(--accent-green);
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#task-input:focus,
+#task-input:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#task-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Add Button (+) */
+.btn-add-task {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-surface);
+  color: var(--accent-green);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-shadow-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.btn-add-task:hover {
+  color: #ffffff;
+  background-color: var(--bg-surface-elevated);
+  box-shadow: var(--neu-shadow-lg), 0 0 10px var(--accent-green-glow);
+  transform: translateY(-1px);
+}
+
+.btn-add-task:active {
+  transform: translateY(1px);
+  box-shadow: var(--neu-shadow-inset-sm);
+  color: var(--accent-green);
+}
+
+/* Stats Display Panel (Painel único esculpido em baixo-relevo - Inset Neumorphic Display) */
+.stats-display-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 22px;
+  background-color: var(--bg-surface-pressed);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-shadow-inset-sm);
+  cursor: default;
+  user-select: none;
+  animation: pageElementEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-item--pending .stat-item-icon {
+  color: var(--text-secondary);
+}
+
+.stat-item--completed .stat-item-icon {
+  color: var(--accent-green);
+}
+
+.stat-label {
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.stat-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-left: 2px;
+}
+
+/* Divisor sutil esculpido entre os dois contadores */
+.stat-divider {
+  width: 1px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.04);
+  box-shadow: -1px 0 0 rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   Tasks Section & Cards (Soft UI)
+   ========================================================================== */
+
+.tasks-section {
+  width: 100%;
+  animation: pageElementEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.30s both;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Animação fluida ao aparecer e ao trocar filtros */
+@keyframes taskCardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Task Item Card */
+.task-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  max-height: 120px;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-shadow-md);
+  cursor: pointer;
+  user-select: none;
+  transition: 
+    max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.28s ease-out,
+    transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow var(--transition-normal),
+    background-color var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  animation: taskCardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--neu-shadow-lg);
+}
+
+.task-card:active {
+  transform: translateY(1px);
+  box-shadow: var(--neu-shadow-sm);
+}
+
+/* Card em processo de saída: fade out, retração e colapso de altura para os outros subirem de forma fluida */
+.task-card--exiting {
+  opacity: 0 !important;
+  transform: scale(0.92) translateX(-8px) !important;
+  max-height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: -14px !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+/* Tarefas Concluídas: Sombra verde de fundo mais sutil */
+.task-card--completed {
+  box-shadow: var(--neu-shadow-completed);
+  background-color: var(--bg-surface);
+}
+
+.task-card--completed:hover {
+  box-shadow: 7px 7px 16px var(--neu-dark-shadow-deep), -4px -4px 10px var(--neu-light-source), 0 0 14px rgba(0, 255, 102, 0.18);
+}
+
+/* Circular Checkbox with Smooth Extinguish / Light-up */
+.task-checkbox-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-surface-pressed);
+  box-shadow: var(--neu-shadow-inset-sm);
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-spring);
+  position: relative;
+}
+
+.task-check-icon {
+  color: transparent;
+  transform: scale(0.4);
+  transition: all var(--transition-normal);
+}
+
+/* Checkbox Checked (Solid Fluorescent Green Light-up) */
+.task-checkbox-circle--checked {
+  background-color: var(--accent-green);
+  box-shadow: 0 0 10px var(--accent-green), 0 0 16px rgba(0, 255, 102, 0.3);
+  transform: scale(1.05);
+}
+
+.task-checkbox-circle--checked .task-check-icon {
+  color: #0b1a10;
+  transform: scale(1);
+}
+
+/* Task Description Typography estendendo-se até o final do card */
+.task-description {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  word-break: break-word;
+  transition: color var(--transition-normal), text-decoration-color var(--transition-normal);
+  line-height: 1.45;
+}
+
+.task-card--completed .task-description {
+  color: var(--text-completed);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--text-muted);
+}
+
+/* Empty State com animação suave */
+.tasks-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 42px 24px;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--neu-shadow-sm);
+  margin-top: 8px;
+  animation: taskCardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.empty-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-surface-pressed);
+  box-shadow: var(--neu-shadow-inset-sm);
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.empty-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.empty-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  max-width: 260px;
+}
+
+/* ==========================================================================
+   Footer Dock Component (Suspended Round Floating Pill Bar with Slide Anim)
+   ========================================================================== */
+
+@keyframes dockFloatUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-dock-wrapper {
+  position: fixed;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none;
+  animation: dockFloatUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+.footer-dock-bar {
+  pointer-events: auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  width: 230px;
+  height: 60px;
+  padding: 6px;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-full);
+  box-shadow: var(--neu-shadow-lg), 0 12px 36px rgba(0, 0, 0, 0.85);
+  user-select: none;
+}
+
+/* Lateral Sliding Pill Indicator */
+.dock-slider-indicator {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  width: calc((100% - 12px) / 3);
+  border-radius: var(--radius-full);
+  background-color: var(--bg-surface-pressed);
+  box-shadow: var(--neu-shadow-inset-md), 0 0 10px var(--accent-green-subtle);
+  transition: transform var(--transition-spring);
+  z-index: 1;
+}
+
+/* Dock Filter Buttons */
+.dock-filter-btn {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition-normal), transform var(--transition-normal);
+}
+
+.dock-filter-btn:hover {
+  color: var(--text-primary);
+}
+
+.dock-filter-btn--active {
+  color: var(--accent-green);
+}
+
+.dock-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-spring);
+}
+
+.dock-filter-btn--active .dock-btn-icon {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 6px rgba(0, 255, 102, 0.35));
+}
+
+.dock-filter-btn:active .dock-btn-icon {
+  transform: scale(0.92);
+}

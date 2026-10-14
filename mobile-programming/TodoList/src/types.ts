@@ -20,4 +20,5 @@ export type Filter = "all" | "pending" | "completed";
 
 export interface FooterProps{
     handleFilterChange(filter: Filter): void;
+    currentFilter?: Filter;
 }
