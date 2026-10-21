@@ -1,0 +1,22 @@
+{
+    "name": "Minha Lista de Tarefas",
+    "short_name": "Minhas Tarefas",
+    "description": "Organize suas tarefas diárias de forma simples.",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#0b2e16",
+    "theme_color": "#00FF66",
+    "icons": [
+        {
+            "src": "./src/assets/icon-128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "./src/assets/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
