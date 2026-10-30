@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import TasksContainer from "./components/TasksContainer";
 import Footer from "./components/Footer";
+import NetworkStatus from "./components/NetworkStatus";
 import { useEffect, useState } from "react";
 import { Filter, Task } from "./types";
 
@@ -79,6 +80,7 @@ function App(){
 
     return(
         <div className="todo-app">
+            <NetworkStatus />
             <main className="todo-container">
                 <Header completedTasks={completedTasksNumber} pendingTasks={pendingTasksNumber} handleNewTaskClick={handleNewTaskClick}/>
                 <TasksContainer tasks={tasksList} handleTaskClick={handleTaskClick} currentFilter={filter}/>
