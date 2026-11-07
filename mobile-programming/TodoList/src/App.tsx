@@ -21,7 +21,7 @@ function App(){
 
         // Faz com que o celular vibre ao tocar em uma tarefa
         if ("vibrate" in navigator)
-            navigator.vibrate(100);
+            navigator.vibrate(5);
 
         if(tasksList[index].completed) {
             setCompletedTasksNumber(n => n + 1);
