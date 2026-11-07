@@ -377,6 +377,8 @@ button:focus-visible, div[role="checkbox"]:focus-visible {
   flex-direction: column;
   gap: 14px;
   width: 100%;
+  position: relative;
+  isolation: isolate;
 }
 
 /* Animação fluida ao aparecer e ao trocar filtros */
@@ -387,7 +389,7 @@ button:focus-visible, div[role="checkbox"]:focus-visible {
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: none;
   }
 }
 
@@ -518,7 +520,7 @@ button:focus-visible, div[role="checkbox"]:focus-visible {
   text-decoration-color: var(--text-muted);
 }
 
-/* Empty State com animação suave */
+/* Empty State com animação suave e compatibilidade iOS WebKit */
 .tasks-empty-state {
   display: flex;
   flex-direction: column;
@@ -530,6 +532,9 @@ button:focus-visible, div[role="checkbox"]:focus-visible {
   border-radius: var(--radius-xl);
   box-shadow: var(--neu-shadow-sm);
   margin-top: 8px;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   animation: taskCardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 

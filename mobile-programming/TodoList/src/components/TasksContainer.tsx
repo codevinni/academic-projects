@@ -44,9 +44,9 @@ function TasksContainer({ tasks, currentFilter, handleTaskClick }: TasksContaine
 
     return (
         <section className="tasks-section" aria-label="Lista de tarefas">
-            <div className="tasks-list" key={currentFilter}>
+            <div className="tasks-list">
                 {filteredTasks.length === 0 ? (
-                    <div className="tasks-empty-state">
+                    <div key="tasks-empty-state" className="tasks-empty-state">
                         <div className="empty-icon-box">
                             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
