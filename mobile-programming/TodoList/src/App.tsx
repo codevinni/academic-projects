@@ -17,8 +17,11 @@ function App(){
 
         // Encontrando o índice da tarefa clicada no vetor
         const index = tasksList.findIndex(task => task.id === id);
-
         tasksList[index].completed = !tasksList[index].completed;
+
+        // Faz com que o celular vibre ao tocar em uma tarefa
+        if ("vibrate" in navigator)
+            navigator.vibrate(200);
 
         if(tasksList[index].completed) {
             setCompletedTasksNumber(n => n + 1);
