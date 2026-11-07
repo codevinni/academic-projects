@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { TasksContainerProps } from "../types";
+import TaskMenu from "./TaskMenu";
 
 function TasksContainer({ tasks, currentFilter, handleTaskClick }: TasksContainerProps){
 
@@ -90,6 +91,7 @@ function TasksContainer({ tasks, currentFilter, handleTaskClick }: TasksContaine
                                 </svg>
                             </div>
                             <span className="task-description">{task.description}</span>
+                            <TaskMenu task={task} />
                         </div>
                         );
                     })

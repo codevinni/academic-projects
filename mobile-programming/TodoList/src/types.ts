@@ -16,6 +16,14 @@ export interface TasksContainerProps{
     currentFilter?: Filter;
 }
 
+export interface TaskMenuProps{
+    task: Task;
+}
+
+export interface ShareButtonProps{
+    tasks: Task[];
+}
+
 export type Filter = "all" | "pending" | "completed";
 
 export interface FooterProps{
