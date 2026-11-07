@@ -40,7 +40,7 @@
   --neu-shadow-inset-md: inset 4px 4px 9px var(--neu-dark-shadow-deep), inset -3px -3px 8px var(--neu-light-source);
   
   /* Sombra verde sutil para tarefas concluídas */
-  --neu-shadow-completed: 6px 6px 16px var(--neu-dark-shadow), -4px -4px 10px var(--neu-light-source), 0 0 10px var(--accent-green-glow);
+  --neu-shadow-completed: var(--neu-shadow-inset-md);
 
   /* Transitions */
   --transition-fast: 0.15s ease-out;
@@ -60,6 +60,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -111,6 +112,7 @@ input, button {
   border: none;
   outline: none;
   background: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Focus Visible apenas para elementos interativos necessários (sem quadrado no input) */
@@ -284,6 +286,11 @@ button:focus-visible, div[role="checkbox"]:focus-visible {
   cursor: pointer;
   transition: all var(--transition-normal);
   position: relative;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
 }
 
 .btn-add-task:hover {
@@ -396,6 +403,10 @@ button:focus-visible, div[role="checkbox"]:focus-visible {
   box-shadow: var(--neu-shadow-md);
   cursor: pointer;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
   transition: 
     max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
     padding 0.32s cubic-bezier(0.4, 0, 0.2, 1),
@@ -431,14 +442,22 @@ button:focus-visible, div[role="checkbox"]:focus-visible {
   pointer-events: none !important;
 }
 
-/* Tarefas Concluídas: Sombra verde de fundo mais sutil */
+/* Tarefas Concluídas: Estado afundado (Neumorphism Inset, tipo os inputs) */
 .task-card--completed {
-  box-shadow: var(--neu-shadow-completed);
-  background-color: var(--bg-surface);
+  background-color: var(--bg-surface-pressed);
+  box-shadow: var(--neu-shadow-inset-md);
+  transform: none;
 }
 
 .task-card--completed:hover {
-  box-shadow: 7px 7px 16px var(--neu-dark-shadow-deep), -4px -4px 10px var(--neu-light-source), 0 0 14px rgba(0, 255, 102, 0.18);
+  background-color: var(--bg-surface-pressed);
+  box-shadow: var(--neu-shadow-inset-md);
+  transform: none;
+}
+
+.task-card--completed:active {
+  transform: none;
+  box-shadow: var(--neu-shadow-inset-md);
 }
 
 /* Circular Checkbox with Smooth Extinguish / Light-up */
@@ -601,6 +620,11 @@ button:focus-visible, div[role="checkbox"]:focus-visible {
   border-radius: var(--radius-full);
   color: var(--text-muted);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
   transition: color var(--transition-normal), transform var(--transition-normal);
 }
 
