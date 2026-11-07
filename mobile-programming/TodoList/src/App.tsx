@@ -15,13 +15,13 @@ function App(){
     // Atualiza o estado da tarefa (completa ou pendente), os contadores e a listagem.
     function handleTaskClick(id: number): void{
 
+         // Faz com que o celular vibre ao tocar em uma tarefa
+        if ("vibrate" in navigator)
+            navigator.vibrate(5);
+
         // Encontrando o índice da tarefa clicada no vetor
         const index = tasksList.findIndex(task => task.id === id);
         tasksList[index].completed = !tasksList[index].completed;
-
-        // Faz com que o celular vibre ao tocar em uma tarefa
-        if ("vibrate" in navigator)
-            navigator.vibrate(5);
 
         if(tasksList[index].completed) {
             setCompletedTasksNumber(n => n + 1);
